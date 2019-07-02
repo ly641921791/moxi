@@ -13,13 +13,13 @@ import com.moxi.util.Constant;
 @Mapper
 public interface NewsService {
 	
-	@Select("SELECT * FROM MOXI.NEWS WHERE ID = #{id};")
+	@Select("SELECT * FROM NEWS WHERE ID = #{id};")
 	News findById(News news);
 	
 	@Select({
 		"<script>",
-		"SELECT N.*,C.NAME AS CATEGORYNAME,C.IMAGE AS CATEGORYIMAGE FROM MOXI.NEWS N ",
-		"LEFT JOIN MOXI.NEWS_CATEGORY C ON N.CATEGORY = C.ID ",
+		"SELECT N.*,C.NAME AS CATEGORYNAME,C.IMAGE AS CATEGORYIMAGE FROM NEWS N ",
+		"LEFT JOIN NEWS_CATEGORY C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
 				"AND N.TITLE LIKE CONCAT('%',#{title},'%')",
@@ -55,8 +55,8 @@ public interface NewsService {
 	
 	@Select({
 		"<script>",
-		"SELECT COUNT(*) FROM MOXI.NEWS N ",
-		"LEFT JOIN MOXI.NEWS_CATEGORY C ON N.CATEGORY = C.ID ",
+		"SELECT COUNT(*) FROM NEWS N ",
+		"LEFT JOIN NEWS_CATEGORY C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
 				"AND N.TITLE LIKE CONCAT('%',#{title},'%')",
